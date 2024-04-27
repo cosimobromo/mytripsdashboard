@@ -1,0 +1,45 @@
+GPSCols: 
+  - LONGITUDE: " Longitude"
+  - LATITUDE: " Latitude"
+  - ALTITUDE: " Altitude"
+  - GPSSPEED: "GPS Speed (Meters/second)"
+  - GPSACCURACY: "GPS Accuracy(m)"
+  - GPSBEARING: "GPS Bearing(°)"
+  - GPSSATELLITES: "GPS Satellites"
+  - GPSHDP: " Horizontal Dilution of Precision"
+  - GPSGX: " G(x)"
+  - GPSGY: " G(y)"
+  - GPSGZ: " G(z)"
+  - GCAL: " G(calibrated)"
+  
+ConsumptionCols:
+  - AVGCOMP: "Trip average Litres/100 KM(l/100km)"
+  - FUELLEVEL: "Fuel Level (From Engine ECU)(%)"
+  
+EngineCols: 
+  - ENGINERPM: "Engine RPM(rpm)"
+  - THROTTLE: "Throttle Position(Manifold)(%)"
+  - INTAKEPRESS: "Intake Manifold Pressure(psi)"
+  - VACUUMGAUGE: "Turbo Boost & Vacuum Gauge(psi)"
+  - INTAKEAIRTEMP: "Intake Air Temperature(°C)"
+  - COOLANTTEMP: "Engine Coolant Temperature(°C)"
+
+KinCols: 
+  - GX: "Acceleration Sensor(X axis)(g)"
+  - GY: "Acceleration Sensor(Y axis)(g)"
+  - GZ: "Acceleration Sensor(Z axis)(g)"
+  - G: "Acceleration Sensor(Total)(g)"
+  - OBDSPEED: "Speed (OBD)(km/h)"
+  
+DistCols: 
+  - DIST: "Trip Distance(km)"
+  - DISTVP: "Trip distance (stored in vehicle profile)(km)"
+
+TimeCols: 
+  - GPSTIME: "GPS Time"
+  - DEVTIME: " Device Time"
+
+VarCols: 
+  - BARPRESS: "Barometric pressure (from vehicle)(psi)"
+
+infinity_symbol: "∞"
