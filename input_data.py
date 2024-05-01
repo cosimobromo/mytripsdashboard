@@ -11,6 +11,7 @@ import os
 import pandas as pd
 import numpy as np
 import yaml
+import streamlit as st
 
 
 def return_column_names(columns: List[Dict], names: bool = True) -> List[str]:
@@ -54,6 +55,11 @@ Kin = return_column_names(input_data_conf["KinCols"], names=False)
 Dist = return_column_names(input_data_conf["DistCols"], names=False)
 Time = return_column_names(input_data_conf["TimeCols"], names=False)
 Var = return_column_names(input_data_conf["VarCols"], names=False)
+
+cols = Time + Var + Dist + Kin + Engine + Consumption + GPS
+
+columns_to_desc = {col: input_col for input_col, col in zip(input_cols, cols)}
+desc_to_columns = {input_col: col for input_col, col in zip(input_cols, cols)}
 
 infinity_symbol = input_data_conf["infinity_symbol"]
 
