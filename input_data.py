@@ -11,6 +11,10 @@ import os
 import pandas as pd
 import numpy as np
 import yaml
+from scipy.signal import find_peaks
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.cluster import KMeans
+from sklearn.linear_model import HuberRegressor
 import streamlit as st
 
 
@@ -100,9 +104,9 @@ def cast_rename_columns(df: pd.DataFrame) -> pd.DataFrame:
         pd.DataFrame: _description_
     """
     df["GPS Time"] = pd.to_datetime(df["GPS Time"], format="%a %b %d %H:%M:%S GMT%z %Y")
-    df[" Device Time"] = pd.to_datetime(
-        df[" Device Time"], format="%d-%b-%Y %H:%M:%S.%f"
-    )
+    # df[" Device Time"] = pd.to_datetime(
+    #    df[" Device Time"], format="%d-%b-%Y %H:%M:%S.%f"
+    # )
     # Rename columns
     df = df.rename(
         columns={input_name: final_name for input_name, final_name in zip(GPSCols, GPS)}
@@ -161,4 +165,51 @@ def preprocess_data(df: pd.DataFrame) -> pd.DataFrame:
 
     df = cast_rename_columns(df)
     df.fillna(0)
+    return df
+
+
+def analyze_data(df: pd.DataFrame) -> pd.DataFrame:
+    """_summary_
+
+    Args:
+        df (pd.DataFrame): _description_
+
+    Returns:
+        pd.DataFrame: _description_
+    """
+    df = df.copy()
+    df["RATIO"] = df["OBDSPEED"] / df["ENGINERPM"]
+    df = df.replace([np.inf, -np.inf], np.nan)
+    df = df.dropna()
+
+    X = MinMaxScaler().fit_transform(df[["RATIO"]].to_numpy())
+    hist, _ = np.histogram(df["RATIO"], bins=100)
+
+    dist_peaks = (
+        find_peaks(
+            np.concatenate(([min(hist)], hist, [min(hist)])),
+            threshold=np.percentile(hist, 90),
+        )[0]
+        - 1
+    )
+
+    outdetmodel = KMeans(n_clusters=len(dist_peaks) + 1).fit_predict(X)
+    df["GEAR"] = outdetmodel
+    gear_2_ratio_dict = {}
+    for gear in set(outdetmodel):
+        print(gear)
+        gear_2_ratio_dict[gear] = np.mean(
+            df[df["GEAR"] == gear]["OBDSPEED"] / df[df["GEAR"] == gear]["ENGINERPM"]
+        )
+    sorted_ratios_idx = np.argsort(np.array(list(gear_2_ratio_dict.values())))
+    df["GEAR"] = df["GEAR"].map(
+        {
+            gear: new_gear
+            for gear, new_gear in zip(
+                sorted_ratios_idx, np.arange(len(sorted_ratios_idx))
+            )
+        }
+    )
+    df["GEAR"] = df["GEAR"].apply(lambda x: "NEUTRAL" if x == 0 else x)
+
     return df

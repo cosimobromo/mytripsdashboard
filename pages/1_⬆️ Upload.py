@@ -2,10 +2,7 @@
 """
 
 import streamlit as st
-from input_data import (
-    load_uploaded_data,
-    preprocess_data,
-)
+from input_data import load_uploaded_data, preprocess_data, analyze_data
 
 load_uploaded_data = st.cache_data(load_uploaded_data)
 preprocess_data = st.cache_data(preprocess_data)
@@ -20,6 +17,7 @@ uploaded_file = st.file_uploader(
 if uploaded_file is not None:
     df = load_uploaded_data(uploaded_file=uploaded_file)
     df = preprocess_data(df)
+    df = analyze_data(df)
     st.session_state["data"] = df
 
     st.page_link("pages/2_🌍 Map Trip.py", label="See my trip map", icon="🌍")

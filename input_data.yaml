@@ -37,7 +37,6 @@ DistCols:
 
 TimeCols: 
   - GPSTIME: "GPS Time"
-  - DEVTIME: " Device Time"
 
 VarCols: 
   - BARPRESS: "Barometric pressure (from vehicle)(psi)"
