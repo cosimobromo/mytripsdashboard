@@ -70,14 +70,14 @@ def density_plot(df: pd.DataFrame):
         df (pd.DataFrame): _description_
     """
     fig = px.density_contour(
-        df, x="ENGINERPM", y="OBDSPEED", nbinsx=30, nbinsy=30, color="GEAR"
+        df, x="ENGINERPM", y="OBDSPEED", nbinsx=50, nbinsy=50, color="GEAR"
     )
     fig.update_layout(
         title=f"{columns_to_desc['ENGINERPM']} vs {columns_to_desc['OBDSPEED']} density plot",
         xaxis_title=columns_to_desc["ENGINERPM"],
         yaxis_title=columns_to_desc["OBDSPEED"],
     )
-    st.plotly_chart(fig, theme="streamlit")
+    st.plotly_chart(fig)  # , theme="streamlit")
 
 
 def gear_plot(df: pd.DataFrame) -> None:
@@ -94,5 +94,9 @@ def gear_plot(df: pd.DataFrame) -> None:
         marginal_x="box",
         marginal_y="box",
         title=f"{columns_to_desc['ENGINERPM']} vs {columns_to_desc['OBDSPEED']} - Gear Ratios",
+    )
+    fig.update_layout(
+        xaxis_title=columns_to_desc["ENGINERPM"],
+        yaxis_title=columns_to_desc["OBDSPEED"],
     )
     st.plotly_chart(fig, theme="streamlit")

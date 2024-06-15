@@ -35,4 +35,4 @@ if st.session_state["data"] is not None:
 
 else:
     st.warning("No data has been uploaded. Go to upload page")
-    st.page_link("pages/1_⬆️ Upload.py", label="Upload your data: ", icon="⬆️")
+    st.page_link("pages/1_⬆️ Upload.py", label="Upload your data", icon="⬆️")
