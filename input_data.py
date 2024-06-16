@@ -197,7 +197,6 @@ def analyze_data(df: pd.DataFrame) -> pd.DataFrame:
     df["GEAR"] = outdetmodel
     gear_2_ratio_dict = {}
     for gear in set(outdetmodel):
-        print(gear)
         gear_2_ratio_dict[gear] = np.mean(
             df[df["GEAR"] == gear]["OBDSPEED"] / df[df["GEAR"] == gear]["ENGINERPM"]
         )

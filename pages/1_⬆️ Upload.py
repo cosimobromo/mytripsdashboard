@@ -19,9 +19,9 @@ if uploaded_file is not None:
     df = preprocess_data(df)
     df = analyze_data(df)
     st.session_state["data"] = df
-
-    st.page_link("pages/2_🌍 Map Trip.py", label="See my trip map", icon="🌍")
+    st.page_link("pages/2_📋 Summary.py", label="Look into trip highlights", icon="📋")
+    st.page_link("pages/3_🌍 Map Trip.py", label="See my trip map", icon="🌍")
     st.page_link(
-        "pages/3_⚙️ Usage Condition.py", label="Engine usage condition", icon="⚙️"
+        "pages/4_⚙️ Usage Condition.py", label="Engine usage condition", icon="⚙️"
     )
-    st.page_link("pages/4_📈 Plots.py", label="Plots", icon="📈")
+    st.page_link("pages/5_📈 Plots.py", label="Plots", icon="📈")

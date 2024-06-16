@@ -100,3 +100,20 @@ def gear_plot(df: pd.DataFrame) -> None:
         yaxis_title=columns_to_desc["OBDSPEED"],
     )
     st.plotly_chart(fig, theme="streamlit")
+
+
+def dist_plot(df: pd.DataFrame, x: str):
+    """_summary_
+
+    Args:
+        df (pd.DataFrame): _description_
+    """
+    fig = px.histogram(
+        df, x=x
+    )
+    fig.update_layout(
+        title=f"{columns_to_desc[x]} distribution",
+        xaxis_title=columns_to_desc[x],
+        yaxis_title="Occurrencies"
+    )
+    st.plotly_chart(fig, theme="streamlit")
