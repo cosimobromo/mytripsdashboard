@@ -7,6 +7,10 @@ from input_data import load_uploaded_data, preprocess_data, analyze_data
 load_uploaded_data = st.cache_data(load_uploaded_data)
 preprocess_data = st.cache_data(preprocess_data)
 
+st.markdown("# Upload Data ⬆️")
+st.markdown("Drag and drop you _.zip_ or _.csv_ file containing your data (that shall be collected using [Torque Pro application](https://play.google.com/store/apps/details?id=org.prowl.torque&pcampaignid=web_share)). \
+            If you want to upload another dataset, please re-apply the same procedure. ")
+
 # File Upload
 uploaded_file = st.file_uploader(
     "Upload your log data",

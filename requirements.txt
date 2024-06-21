@@ -5,4 +5,5 @@ plotly
 PyYAML
 scikit_learn
 scipy
+seaborn
 streamlit

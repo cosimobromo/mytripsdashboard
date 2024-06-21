@@ -164,6 +164,5 @@ cython_debug/
 secrets*
 
 # Input Files
-*.csv 
 *.zip
 *.pkl
