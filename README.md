@@ -18,7 +18,7 @@ MyTripsDashboard creation was driven by the need to provide me (and others) a ra
 
 ## Usage
 
-1. Go to the [Streamlit application](https://linkhere.app/)
+1. Go to the [Streamlit application](https://mytripsdashboard.streamlit.app/)
 2. Upload a file or use sample dataset 
 3. Explore the app!
 
